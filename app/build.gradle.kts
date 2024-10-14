@@ -6,6 +6,14 @@ android {
     namespace = "com.example.canvastest"
     compileSdk = 34
 
+    viewBinding {
+        enable = true
+    }
+
+    buildFeatures {
+        viewBinding = true
+    }
+
     defaultConfig {
         applicationId = "com.example.canvastest"
         minSdk = 29

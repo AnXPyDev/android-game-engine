@@ -1,9 +1,9 @@
-package com.example.canvastest;
+package engine.event;
 
-import android.text.method.Touch;
+import engine.Vector;
 
 public class TouchEvent implements GameEvent {
-    Vector pos;
+    public Vector pos;
 
     public TouchEvent(Vector pos) {
         this.pos = pos;
