@@ -1,23 +1,15 @@
-package engine.graphics;
+package gameframework.assets;
 
 import android.content.Context;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.Paint;
-import android.graphics.RectF;
-import android.util.Log;
 
 import androidx.annotation.DrawableRes;
 
-import engine.assets.BitmapResourceLoader;
-import engine.assets.Loadable;
-import engine.assets.ResourceLoader;
-
-public class BitmapDrawable implements Loadable {
+public class BitmapHolder implements Loadable {
     Bitmap bitmap;
     ResourceLoader loader;
 
-    public BitmapDrawable(ResourceLoader<Bitmap> loader) {
+    public BitmapHolder(ResourceLoader<Bitmap> loader) {
         this.loader = loader;
         loader.registerCallback(bitmap -> {
             this.bitmap = bitmap;
@@ -32,11 +24,12 @@ public class BitmapDrawable implements Loadable {
         return (double)bitmap.getWidth() / (double)bitmap.getHeight();
     }
 
-    public static BitmapDrawable fromResource(@DrawableRes int resid) {
-        return new BitmapDrawable(new BitmapResourceLoader(resid));
-    }
-
     public void load(Context context) {
         loader.loadResource(context);
     }
+
+    public static BitmapHolder fromResource(@DrawableRes int resid) {
+        return new BitmapHolder(new BitmapResourceLoader(resid));
+    }
+
 }

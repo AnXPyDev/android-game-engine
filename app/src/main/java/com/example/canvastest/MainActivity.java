@@ -1,38 +1,33 @@
 package com.example.canvastest;
 
 import android.os.Bundle;
-import android.view.View;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 
-import engine.Game;
-import engine.assets.BulkLoader;
+import engine.core.Engine;
+import gameframework.assets.BulkLoader;
+import engine.feature.TouchInputFeature;
 
 public class MainActivity extends AppCompatActivity {
-    Game game;
-    View gameDisplay;
-    BulkLoader bulkLoader;
+    private BulkLoader bulkLoader = new BulkLoader();
+
+    private Engine engine;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
 
-        bulkLoader = new BulkLoader();
-
-        BaloonEntity.initStatic(bulkLoader);
+        Engine.initStatic();
 
         bulkLoader.load(this);
 
-        game = new Game();
-        gameDisplay = game.initDisplay(this);
+        engine = new Engine(this);
 
-        setContentView(gameDisplay);
+        engine.enableFeature(TouchInputFeature.class);
+        engine.setEnabledPerformanceOverlay(false);
 
-        gameDisplay.post(() -> {
-            game.start();
-            game.replaceScene(new BaloonScene());
-        });
+        engine.boot(this, new BaloonsGame());
     }
 }

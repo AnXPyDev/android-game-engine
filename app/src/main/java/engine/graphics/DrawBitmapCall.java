@@ -7,7 +7,7 @@ import android.graphics.Rect;
 import android.graphics.RectF;
 import android.util.Log;
 
-public class DrawBitmapCall implements DrawCall {
+public final class DrawBitmapCall implements DrawCall {
     Bitmap bitmap;
     Rect src;
     RectF dst;

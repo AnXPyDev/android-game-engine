@@ -1,6 +1,4 @@
-package engine;
-
-import androidx.annotation.NonNull;
+package engine.util;
 
 public class Vector {
     public double x, y;

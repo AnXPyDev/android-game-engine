@@ -1,4 +1,4 @@
-package engine.assets;
+package gameframework.assets;
 
 import android.content.Context;
 
